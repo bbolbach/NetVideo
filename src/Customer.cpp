@@ -50,7 +50,7 @@ double Customer::amountFor(const Rental& rent){
                 thisAmount += (rent.getDaysRented() - 3) * 1.5;
         break;
         }
-	return 0;
+	return thisAmount;
 }
 
 // customer rental statement
@@ -80,7 +80,8 @@ std::string Customer::statement() const {
         result += "\t";
 
         
-
+		double thisAmount = amountFor(*it);
+		
         // amount of rental
         std::ostringstream out_str_stream;
         out_str_stream << thisAmount;
