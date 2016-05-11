@@ -30,6 +30,8 @@ public:
 	//creats output string
 	std::string createOutputString(std::string beginText, double amount, std::string endText) const;
 	
+	double calculateFee(double baseFee, int daysRented, int daysToOver, double overdueFee);
+	
 	double forAmount() const;
 
 private:

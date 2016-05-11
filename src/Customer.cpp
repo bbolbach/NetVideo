@@ -29,28 +29,35 @@ void Customer::addRental(const Rental& rental) {
     rentals.push_back(rental);
 }
 
-//calculates the amount of the rental
+//figures out what the calculation parameters should be
 double Customer::amountFor(const Rental& rent){
     double thisAmount = 0;
     switch(rent.getVideo().getCode()) {
 
         case Video::REGULAR:
-            thisAmount = 2;
-            if (rent.getDaysRented() > 2)
-                thisAmount += (rent.getDaysRented() - 2) * 1.5;
+			thisAmount = (2, rent.getDaysRented(), 2, 1.5);
         break;
 
         case Video::NEW_RELEASE:
-            thisAmount = rent.getDaysRented() * 3;
+			//we can do this with a little trickery. if it's rented for more than 0 days the "overdue fee" will be multiplied by the days
+			thisAmount = (0, rent.getDaysRented(), 0, 3);
         break;
 
         case Video::CHILDRENS:
-            thisAmount = 1.5;
-            if (rent.getDaysRented() > 3)
-                thisAmount += (rent.getDaysRented() - 3) * 1.5;
+			thisAmount = (1.5, rent.getDaysRented(), 3, 1.5)
         break;
      }
      return thisAmount;
+}
+
+//does all the calculation for the fee
+double Customer::calculateFee(double baseFee, int daysRented, int daysToOver, double overdueFee){
+	double feeAmount = baseFee;
+	if (daysRented > daysToOver){
+		feeAmount += (daysRented - daysToOver) * overdueFee;
+	}
+	return feeAmount;
+	
 }
 
 // create strings for output_iterator
