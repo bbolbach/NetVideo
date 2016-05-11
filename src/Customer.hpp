@@ -27,6 +27,9 @@ public:
     // customer rental statement
     std::string statement() const;
 	
+	//creats output string
+	std::string createOutputString(std::string beginText, double amount, std::string endText) const;
+	
 	double forAmount() const;
 
 private:
