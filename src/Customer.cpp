@@ -31,26 +31,26 @@ void Customer::addRental(const Rental& rental) {
 
 //calculates the amount of the rental
 double Customer::amountFor(const Rental& rent){
-	double thisAmount = 0;
+    double thisAmount = 0;
     switch(rent.getVideo().getCode()) {
 
         case Video::REGULAR:
-            thisAmount += 2;
+            thisAmount = 2;
             if (rent.getDaysRented() > 2)
                 thisAmount += (rent.getDaysRented() - 2) * 1.5;
         break;
 
         case Video::NEW_RELEASE:
-            thisAmount += rent.getDaysRented() * 3;
+            thisAmount = rent.getDaysRented() * 3;
         break;
 
         case Video::CHILDRENS:
-            thisAmount += 1.5;
+            thisAmount = 1.5;
             if (rent.getDaysRented() > 3)
                 thisAmount += (rent.getDaysRented() - 3) * 1.5;
         break;
-        }
-	return thisAmount;
+     }
+     return thisAmount;
 }
 
 // customer rental statement
