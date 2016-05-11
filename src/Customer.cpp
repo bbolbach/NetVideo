@@ -53,6 +53,18 @@ double Customer::amountFor(const Rental& rent){
      return thisAmount;
 }
 
+// create strings for output_iterator
+std::string Customer::createOutputString(std::string beginText, double amount, std::string endText) const{
+	std::string result
+	result = beginText;
+    std::ostringstream out_str_stream;
+    out_str_stream << amount;
+    result += out_str_stream.str();
+    result += endText;
+	result += "\n";
+	return result;
+}
+
 // customer rental statement
 std::string Customer::statement() const {
 
@@ -92,18 +104,9 @@ std::string Customer::statement() const {
     }
 
     // total amount owed
-    result += "Amount owed is: ";
-    std::ostringstream out_str_stream;
-    out_str_stream << totalAmount;
-    result += out_str_stream.str();
-    result += "\n";
-
-    // frequent renter points earned
-    result += "You earned: ";
-    std::ostringstream out_str_stream2;
-    out_str_stream2 << frequentRenterPoints;
-    result += out_str_stream2.str();
-    result += " frequent renter points\n";
+    result += createOutputString("Amount owed is: ", totalAmount, "");
+	// frequent renter points earned
+	result += createOutputString("You earned: ", frequentRenterPoints, " frequent renter points");
 
     return result;
 }
