@@ -20,7 +20,7 @@ run : VideoStore
 VideoStore : $(OBJS)
 	$(GCC) $^ -o $@
 
-VideoStore.o: VideoStore.cpp Video.hpp Rental.hpp Customer.hpp
+VideoStore.o: NetVideo.cpp Video.hpp Rental.hpp Customer.hpp
 	$(GCC) $(CFLAGS) -c $<
 
 # Video
